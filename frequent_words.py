@@ -27,3 +27,4 @@ def frequentwords(text, k, min):
             frequent_patterns.append(text[i: i+k])
     frequent_patterns = sorted(set(frequent_patterns))
     return frequent_patterns
+
