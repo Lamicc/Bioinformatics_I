@@ -4,7 +4,7 @@ def pattern_to_number(pattern):
     index = []
     rmargin= len(pattern)-1
 
-    for i in range(0, rmargin):
+    for i in range(0, len(pattern)):
         order = rmargin - i
 
         if pattern[i] == "A":
@@ -29,15 +29,15 @@ def number_to_pattern(number, k):
         if total >= 3 * pow(4, k-i-1):
             pattern += "T"
             total -= 3 * pow(4, k-i-1)
-            print(total)
+            #print(total)
         elif total >= 2 * pow(4, k-i-1):
             pattern += "G"
             total -= (2 * pow(4, k-i-1))
-            print(total)
+            #print(total)
         elif total >= 1 * pow(4, k-i-1):
             pattern += "C"
             total -= (1 * pow(4, k-i-1))
-            print(total)
+            #print(total)
         else:
             pattern += "A"
 
