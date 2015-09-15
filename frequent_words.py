@@ -41,5 +41,13 @@ def fast_most_frequent(text, k):
 
     return frequent_patterns
 
+def fast_frequentwords(text, k, min):
+    frequent_patterns = []
+    frequency_array = computingfrequencies(text, k)
+    for i in range(0, pow(4, k)):
+        if frequency_array[i] >= min:
+            pattern = number_to_pattern(i, k)
+            frequent_patterns.append(pattern)
 
+    return frequent_patterns
 
