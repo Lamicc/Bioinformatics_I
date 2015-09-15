@@ -12,6 +12,13 @@ def symbol_to_number(s):
         print("Wrong symbol! Check the genome please.")
     return n
 
+def last_symbol(pattern):
+    return pattern[-1]
+
+def prefix(pattern):
+    return pattern[0:-1]
+
+
 
 def pattern_to_number(pattern):
     index = []
@@ -33,6 +40,8 @@ def pattern_to_number(pattern):
         '''
     number = sum(index)
     return number
+
+#def pattern_to_number_modify(pattern):
 
 
 
