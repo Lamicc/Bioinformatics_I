@@ -1,4 +1,17 @@
 
+def symbol_to_number(s):
+    if s == "A":
+        n = 0
+    elif s == "C":
+        n = 1
+    elif s == "G":
+        n = 2
+    elif s == "T":
+        n = 3
+    else:
+        print("Wrong symbol! Check the genome please.")
+    return n
+
 
 def pattern_to_number(pattern):
     index = []
@@ -6,7 +19,9 @@ def pattern_to_number(pattern):
 
     for i in range(0, len(pattern)):
         order = rmargin - i
+        index += [symbol_to_number(pattern[i]) * pow(4, order)]
 
+        '''
         if pattern[i] == "A":
             index += [0 * pow(4,order)]
         elif pattern[i] == "C":
@@ -15,7 +30,7 @@ def pattern_to_number(pattern):
             index += [2 * pow(4, order)]
         else:
             index += [3 * pow(4, order)]
-
+        '''
     number = sum(index)
     return number
 
@@ -26,6 +41,7 @@ def number_to_pattern(number, k):
     total = number
 
     for i in range(0,k):
+
         if total >= 3 * pow(4, k-i-1):
             pattern += "T"
             total -= 3 * pow(4, k-i-1)
@@ -40,6 +56,7 @@ def number_to_pattern(number, k):
             #print(total)
         else:
             pattern += "A"
+
 
     return pattern
 
