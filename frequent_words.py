@@ -1,7 +1,7 @@
 
 from pattern_count import patterncount
 from computing_frequencies import computingfrequencies
-from P_to_N import number_to_pattern
+from P_to_N import number_to_pattern, p_to_n_modify, n_to_p_modify
 
 def most_frequent(text, k):
     frequent_patterns = []
@@ -50,4 +50,39 @@ def fast_frequentwords(text, k, min):
             frequent_patterns.append(pattern)
 
     return frequent_patterns
+
+def find_most_fword_by_sorting(text,k):
+    frequentpatterns = []
+    index = []
+    count = []
+    rep_count = []
+    for i in range(0,len(text) -k +1):
+        pattern = text[i:i+k]
+        index.append(p_to_n_modify(pattern))
+        count.append(1)
+    sortedindex = sorted(index)
+    print(sortedindex)
+    rep_count.append(count[0])
+    for i in range(1,len(text)- k +1):
+        if sortedindex[i] == sortedindex[i-1]:
+            rep_count += [rep_count[i-1] + 1]
+        else:
+            rep_count += [count[i]]
+    maxcount = max(rep_count)
+    for i in range(0,len(text)-k+1):
+        if rep_count[i] == maxcount:
+            pattern = n_to_p_modify(sortedindex[i],k)
+            frequentpatterns.append(pattern)
+    return frequentpatterns
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,16 +1,16 @@
 #from pattern_count import patterncount
-#from frequent_words import  most_frequent, frequentwords, fast_most_frequent, fast_frequentwords
-#from reverse_complement import findreverse
-#from occurrence import find_pattern
+from frequent_words import  most_frequent, frequentwords, fast_most_frequent, fast_frequentwords, find_most_fword_by_sorting
+from reverse_complement import findreverse
+from occurrence import find_pattern
 #from P_to_N import pattern_to_number, number_to_pattern, p_to_n_modify, n_to_p_modify
-#from computing_frequencies import computingfrequencies
+from computing_frequencies import computingfrequencies
 
 
-text="CCAGATT"
-pattern = "GTGTCCAAGTCCGACTCCAC"
+text="AAGCAAAGGTGGG"
+#pattern = "GTGTCCAAGTCCGACTCCAC"
 genome = ""
-k = 3
-t = 18
+k = 2
+#t = 18
 
 
 def standard_conversion(list):
@@ -24,3 +24,6 @@ def standard_conversion(list):
 #li = list(set(l))
 #total = len(li)
 
+print(fast_most_frequent(text,k))
+print(find_most_fword_by_sorting(text,k))
+#print(text[0:3])
