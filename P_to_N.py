@@ -1,16 +1,29 @@
 
 def symbol_to_number(s):
     if s == "A":
-        n = 0
+        return 0
     elif s == "C":
-        n = 1
+        return 1
     elif s == "G":
-        n = 2
+        return 2
     elif s == "T":
-        n = 3
+        return 3
     else:
         print("Wrong symbol! Check the genome please.")
-    return n
+        return -1
+
+def number_to_symbol(n):
+    if n == 0:
+        return "A"
+    elif n == 1:
+        return "C"
+    elif n == 2:
+        return  "G"
+    elif n == 3:
+        return "T"
+    else:
+        print("Wrong number!")
+        return "ERROR"
 
 def last_symbol(pattern):
     return pattern[-1]
@@ -18,6 +31,12 @@ def last_symbol(pattern):
 def prefix(pattern):
     return pattern[0:-1]
 
+def p_to_n_modify(pattern):
+    if len(pattern) == 0:
+        return 0
+    symbol = last_symbol(pattern)
+    p = prefix(pattern)
+    return 4 * p_to_n_modify(p) + symbol_to_number(symbol)
 
 
 def pattern_to_number(pattern):
@@ -41,8 +60,15 @@ def pattern_to_number(pattern):
     number = sum(index)
     return number
 
-#def pattern_to_number_modify(pattern):
 
+def n_to_p_modify(index, k):
+    if k == 1:
+        return number_to_symbol(index)
+    prefixindex = int(index/4)
+    r = index % 4
+    symbol = number_to_symbol(r)
+    prefixpattern = n_to_p_modify(prefixindex, k-1)
+    return prefixpattern + symbol
 
 
 def number_to_pattern(number, k):
