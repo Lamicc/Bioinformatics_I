@@ -15,6 +15,7 @@ def find_min_skew(list):
     for i in range(0,len(list)):
         if list[i] == min(list):
             min_skew.append(i)
+            print(i)
     return min_skew
 
 
