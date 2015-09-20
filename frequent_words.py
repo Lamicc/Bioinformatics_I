@@ -1,5 +1,5 @@
 
-from pattern_count import patterncount
+from pattern_count import patterncount, patterncount_with_mismatchs
 from computing_frequencies import computingfrequencies
 from P_to_N import number_to_pattern, p_to_n_modify, n_to_p_modify
 
@@ -76,7 +76,19 @@ def find_most_fword_by_sorting(text,k):
     return frequentpatterns
 
 
-
+def most_app_frequent(text, k, d):
+    frequent_patterns = []
+    count = []
+    for i in range(0, len(text) - k + 1):
+        pattern = text[i : i+k]
+        count_number = patterncount_with_mismatchs(text, pattern, d)
+        count += [count_number]
+    maxcount = max(count)
+    for i in range(0, len(text) - k):
+        if count[i] == maxcount:
+            frequent_patterns.append(text[i: i+k])
+    frequent_patterns = sorted(set(frequent_patterns))
+    return frequent_patterns
 
 
 

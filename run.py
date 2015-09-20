@@ -1,18 +1,19 @@
 #from pattern_count import patterncount
-from frequent_words import  most_frequent, frequentwords, fast_most_frequent, fast_frequentwords, find_most_fword_by_sorting
+from frequent_words import  most_frequent, frequentwords, fast_most_frequent, fast_frequentwords, find_most_fword_by_sorting, most_app_frequent
 from reverse_complement import findreverse
 from occurrence import find_pattern
 #from P_to_N import pattern_to_number, number_to_pattern, p_to_n_modify, n_to_p_modify
 from computing_frequencies import computingfrequencies
 from find_oric import plot_skew, find_min_skew
 from hamming_distance import compute_hd,approximate_pattern_matching
+from neighbor import immediate_neighbors
 
-text = ""
-pattern = "CCATAG"
+text = "AAAAAAAAAA"
+pattern = ""
 genome = ""
-k = 0
+k = 2
 
-d = 3
+d = 1
 
 def standard_conversion(list):
     for i in range(0,list.__len__()):
@@ -20,20 +21,11 @@ def standard_conversion(list):
     stri = " ".join(list)
     return stri
 
-#answer = " ".join(l)
+p = most_app_frequent(text,k,d)
+
+answer = " ".join(p)
+print(answer)
 #li = list(set(l))
 #total = len(li)
 
-#print(fast_most_frequent(text,k))
-#print(find_most_fword_by_sorting(text,k))
-#print(text[0:3])
-
-
-#l =plot_skew(genome)
-#find_min_skew(l)
-#print(standard_conversion(li))
-#print(compute_hd(p,q))
-
-p = approximate_pattern_matching(pattern, text,d)
-print(len(p))
 #print(standard_conversion(p))
