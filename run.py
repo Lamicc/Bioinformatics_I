@@ -6,14 +6,16 @@ from occurrence import find_pattern
 from computing_frequencies import computingfrequencies
 from find_oric import plot_skew, find_min_skew
 from hamming_distance import compute_hd,approximate_pattern_matching
-from neighbor import immediate_neighbors
+from neighbor import immediate_neighbors,neighbors
 
-text = "AAAAAAAAAA"
-pattern = ""
+text = "CATGCCATTCGCATTGTCCCAGTGA"
+pattern = "ACG"
 genome = ""
 k = 2
 
-d = 1
+d = 2
+
+
 
 def standard_conversion(list):
     for i in range(0,list.__len__()):
@@ -21,10 +23,11 @@ def standard_conversion(list):
     stri = " ".join(list)
     return stri
 
-p = most_app_frequent(text,k,d)
-
-answer = " ".join(p)
+c = neighbors(pattern,1)
+answer = " ".join(c)
 print(answer)
+
+#print(text[1:])
 #li = list(set(l))
 #total = len(li)
 
