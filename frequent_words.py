@@ -2,6 +2,8 @@
 from pattern_count import patterncount, patterncount_with_mismatchs
 from computing_frequencies import computingfrequencies
 from P_to_N import number_to_pattern, p_to_n_modify, n_to_p_modify
+from neighbor import neighbors
+from hamming_distance import approximate_pattern_matching
 
 def most_frequent(text, k):
     frequent_patterns = []
@@ -75,20 +77,29 @@ def find_most_fword_by_sorting(text,k):
             frequentpatterns.append(pattern)
     return frequentpatterns
 
-
-def most_app_frequent(text, k, d):
+def frequent_words_with_mismatches(text, k, d):
     frequent_patterns = []
-    count = []
-    for i in range(0, len(text) - k + 1):
-        pattern = text[i : i+k]
-        count_number = patterncount_with_mismatchs(text, pattern, d)
-        count += [count_number]
-    maxcount = max(count)
-    for i in range(0, len(text) - k):
-        if count[i] == maxcount:
-            frequent_patterns.append(text[i: i+k])
-    frequent_patterns = sorted(set(frequent_patterns))
+    close = []
+    for i in range(0, pow(4,k)):
+        close.append(0)
+        frequent_array = [0]
+    for i in range(0,len(text)-k+1):
+        neighborhood = neighbors(text[i:i+k],d)
+        for pattern in neighborhood:
+            index = p_to_n_modify(pattern)
+            close[index] = 1
+    for i in range(0, pow(4,k)):
+        if close[i] == 1:
+            pattern = n_to_p_modify(i,k)
+            frequent_array.append(len(approximate_pattern_matching(pattern,text,d)))
+    max_count = max(frequent_array)
+    for i in range(0,pow(4,k)):
+        if frequent_array[i] == max_count:
+            pattern = n_to_p_modify(i,k)
+            frequent_patterns.append(pattern)
     return frequent_patterns
+
+
 
 
 

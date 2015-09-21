@@ -8,12 +8,12 @@ from find_oric import plot_skew, find_min_skew
 from hamming_distance import compute_hd,approximate_pattern_matching
 from neighbor import immediate_neighbors,neighbors
 
-text = "CATGCCATTCGCATTGTCCCAGTGA"
-pattern = "ACG"
+text = "ACGTTGCATGTCGCATGATGCATGAGAGCT"
+pattern = ""
 genome = ""
-k = 2
+k = 4
 
-d = 2
+d = 1
 
 
 
@@ -23,9 +23,15 @@ def standard_conversion(list):
     stri = " ".join(list)
     return stri
 
-c = neighbors(pattern,1)
-answer = " ".join(c)
-print(answer)
+
+
+
+
+#c = approximate_pattern_matching(pattern,text,d)
+
+
+#answer = " ".join(c)
+#print(answer)
 
 #print(text[1:])
 #li = list(set(l))
