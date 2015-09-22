@@ -80,9 +80,10 @@ def find_most_fword_by_sorting(text,k):
 def frequent_words_with_mismatches(text, k, d):
     frequent_patterns = []
     close = []
+    frequent_array = []
     for i in range(0, pow(4,k)):
         close.append(0)
-        frequent_array = [0]
+        frequent_array.append(0)
     for i in range(0,len(text)-k+1):
         neighborhood = neighbors(text[i:i+k],d)
         for pattern in neighborhood:
@@ -91,7 +92,7 @@ def frequent_words_with_mismatches(text, k, d):
     for i in range(0, pow(4,k)):
         if close[i] == 1:
             pattern = n_to_p_modify(i,k)
-            frequent_array.append(len(approximate_pattern_matching(pattern,text,d)))
+            frequent_array[i] = len(approximate_pattern_matching(pattern,text,d))
     max_count = max(frequent_array)
     for i in range(0,pow(4,k)):
         if frequent_array[i] == max_count:
@@ -99,6 +100,29 @@ def frequent_words_with_mismatches(text, k, d):
             frequent_patterns.append(pattern)
     return frequent_patterns
 
+def frequent_words_with_mismatches_by_sorting(text, k, d):
+    frequent_patterns = []
+    neighborhoods = []
+    index = []
+    count = []
+    for i in range(0,len(text)-k +1):
+        neighborhoods.append(neighbors(text[i:i+k],d))
+    neighborhoods = [item for sublist in neighborhoods for item in sublist]
+    neighborhood_array = "".join(neighborhoods)
+    for i in range(0,len(neighborhoods)):
+        pattern = neighborhood_array[i]
+        index.append(p_to_n_modify(pattern))
+        count.append(1)
+    sorted_index = sorted(index)
+    for i in range(0, neighborhoods.__len__()-1):
+        if sorted_index[i] == sorted_index[i+1]:
+            count[i+1] = count[i] +1
+    maxcount = max(count)
+    for i in range(0, len(neighborhoods)):
+        if count[i] == maxcount:
+            pattern = n_to_p_modify(sorted_index[i], k)
+            frequent_patterns.append(pattern)
+    return frequent_patterns
 
 
 
