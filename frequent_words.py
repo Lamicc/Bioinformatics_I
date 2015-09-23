@@ -4,6 +4,7 @@ from computing_frequencies import computingfrequencies
 from P_to_N import number_to_pattern, p_to_n_modify, n_to_p_modify
 from neighbor import neighbors
 from hamming_distance import approximate_pattern_matching
+from reverse_complement import findreverse
 
 def most_frequent(text, k):
     frequent_patterns = []
@@ -124,7 +125,28 @@ def frequent_words_with_mismatches_by_sorting(text, k, d):
             frequent_patterns.append(pattern)
     return frequent_patterns
 
-
+def frequent_words_with_mismatches_complement(text, k, d):
+    frequent_patterns = []
+    close = []
+    frequent_array = []
+    for i in range(0, pow(4,k)):
+        close.append(0)
+        frequent_array.append(0)
+    for i in range(0,len(text)-k+1):
+        neighborhood = neighbors(text[i:i+k],d)
+        for pattern in neighborhood:
+            index = p_to_n_modify(pattern)
+            close[index] = 1
+    for i in range(0, pow(4,k)):
+        if close[i] == 1:
+            pattern = n_to_p_modify(i,k)
+            frequent_array[i] = len(approximate_pattern_matching(pattern,text,d))+len(approximate_pattern_matching(findreverse(pattern),text,d))
+    max_count = max(frequent_array)
+    for i in range(0,pow(4,k)):
+        if frequent_array[i] == max_count:
+            pattern = n_to_p_modify(i,k)
+            frequent_patterns.append(pattern)
+    return frequent_patterns
 
 
 
