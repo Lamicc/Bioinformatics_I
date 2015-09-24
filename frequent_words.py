@@ -109,11 +109,14 @@ def frequent_words_with_mismatches_by_sorting(text, k, d):
     for i in range(0,len(text)-k +1):
         neighborhoods.append(neighbors(text[i:i+k],d))
     neighborhoods = [item for sublist in neighborhoods for item in sublist]
-    neighborhood_array = "".join(neighborhoods)
+    neighborhood_array = neighborhoods
+    for i in range(0, len(neighborhoods)):
+        index.append(0)
+        count.append(0)
     for i in range(0,len(neighborhoods)):
         pattern = neighborhood_array[i]
-        index.append(p_to_n_modify(pattern))
-        count.append(1)
+        index[i] = p_to_n_modify(pattern)
+        count[i] = 1
     sorted_index = sorted(index)
     for i in range(0, neighborhoods.__len__()-1):
         if sorted_index[i] == sorted_index[i+1]:

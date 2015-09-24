@@ -28,12 +28,14 @@ def standard_conversion(list):
 
 
 
-c = frequent_words_with_mismatches_complement(text,k,d)
-#c = approximate_pattern_matching(pattern,text,d)
+#c = frequent_words_with_mismatches_complement(text,k,d)
+
+print(frequent_words_with_mismatches(text,k,d))
+print(frequent_words_with_mismatches_by_sorting(text,k,d))
 
 
-answer = " ".join(c)
-print(answer)
+#answer = " ".join(c)
+#print(answer)
 
 
 #li = list(set(l))
