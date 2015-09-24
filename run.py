@@ -11,13 +11,11 @@ from find_oric import plot_skew, find_min_skew
 from hamming_distance import compute_hd,approximate_pattern_matching
 from neighbor import immediate_neighbors,neighbors
 
-text = "CTTGCCGGCGCCGATTATACGATCGCGGCCGCTTGCCTTCTTTATAATGCATCGGCGCCGCGATCTTGCTATATACGTACGCTTCGCTTGCATCTTGCGCGCATTACGTACTTATCGATTACTTATCTTCGATGCCGGCCGGCATATGCCGCTTTAGCATCGATCGATCGTACTTTACGCGTATAGCCGCTTCGCTTGCCGTACGCGATGCTAGCATATGCTAGCGCTAATTACTTAT"
-
+text = ""
 pattern = ""
 genome = ""
-k = 9
-
-d =3
+k = 0
+d = 0
 
 
 
@@ -29,15 +27,13 @@ def standard_conversion(list):
 
 
 
-c = frequent_words_with_mismatches_complement(text,k,d)
 
+c = frequent_words_with_mismatches_complement(text,k,d)
 #c = approximate_pattern_matching(pattern,text,d)
 
 
 answer = " ".join(c)
 print(answer)
-
-#p = frequent_words_with_mismatches_by_sorting(text,k,d)
 
 
 #li = list(set(l))
