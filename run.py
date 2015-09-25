@@ -10,13 +10,15 @@ from computing_frequencies import computingfrequencies
 from find_oric import plot_skew, find_min_skew
 from hamming_distance import compute_hd,approximate_pattern_matching
 from neighbor import immediate_neighbors,neighbors
+from motif import motif_enumeration
 
 text = ""
 pattern = ""
 genome = ""
-k = 0
-d = 0
-
+k = 5
+d = 1
+dna = ["TTATGTTATAACCGCTTAACAGATA","CTCTTTAAAGGAAGCTTATCCCGAA","AATAGTTCGGTTATCCGATGTTCTG","TTATTACGGACTGAACTGGACGCGG",
+       "GTACGAACACTTATATGGCCGGATT", "TTATTTGTGCTTGCAGTTATGGATG"]
 
 
 def standard_conversion(list):
@@ -30,12 +32,10 @@ def standard_conversion(list):
 
 #c = frequent_words_with_mismatches_complement(text,k,d)
 
-print(frequent_words_with_mismatches(text,k,d))
-print(frequent_words_with_mismatches_by_sorting(text,k,d))
+c =motif_enumeration(dna,k,d)
 
-
-#answer = " ".join(c)
-#print(answer)
+answer = " ".join(c)
+print(answer)
 
 
 #li = list(set(l))
