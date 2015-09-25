@@ -12,6 +12,8 @@ from hamming_distance import compute_hd,approximate_pattern_matching
 from neighbor import immediate_neighbors,neighbors
 from motif import motif_enumeration
 
+import cmath
+
 text = ""
 pattern = ""
 genome = ""
@@ -29,14 +31,10 @@ def standard_conversion(list):
 
 
 
-
 #c = frequent_words_with_mismatches_complement(text,k,d)
-
-c =motif_enumeration(dna,k,d)
-
-answer = " ".join(c)
-print(answer)
-
+#answer = " ".join(c)
+#print(answer)
+print( (-1 * (0.25 * cmath.log(0.25,2)+0*cmath.log(0.25,2)+0.25*cmath.log(0.5,2)+0.5 * cmath.log(0.25,2))))
 
 #li = list(set(l))
 #total = len(li)
