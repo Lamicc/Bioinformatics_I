@@ -12,12 +12,13 @@ from hamming_distance import compute_hd,approximate_pattern_matching, \
 distance_between_pattern_and_strings, median_string
 from neighbor import immediate_neighbors,neighbors
 from motif import motif_enumeration
+from profile import profile_most_probable
 
 import cmath
 
 text = ""
 genome = ""
-k = 6
+k = 12
 d = 1
 
 pattern = ""
@@ -32,8 +33,15 @@ def standard_conversion(list):
     return stri
 
 
-print(median_string(dna,k))
 
+A =""
+C =""
+G =""
+T =""
+
+
+c = profile_most_probable(text,k,A,C,G,T)
+print(c)
 #c = frequent_words_with_mismatches_complement(text,k,d)
 #answer = " ".join(c)
 #print(answer)
