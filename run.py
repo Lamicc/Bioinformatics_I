@@ -8,7 +8,8 @@ from occurrence import find_pattern
 from P_to_N import pattern_to_number, number_to_pattern, p_to_n_modify, n_to_p_modify
 from computing_frequencies import computingfrequencies
 from find_oric import plot_skew, find_min_skew
-from hamming_distance import compute_hd,approximate_pattern_matching, distance_between_pattern_and_strings
+from hamming_distance import compute_hd,approximate_pattern_matching, \
+distance_between_pattern_and_strings, median_string
 from neighbor import immediate_neighbors,neighbors
 from motif import motif_enumeration
 
@@ -16,11 +17,11 @@ import cmath
 
 text = ""
 genome = ""
-k = 5
+k = 6
 d = 1
 
 pattern = ""
-text_dna = ""
+text_dna =""
 dna = text_dna.split()
 
 
@@ -31,7 +32,7 @@ def standard_conversion(list):
     return stri
 
 
-print(distance_between_pattern_and_strings(pattern,dna))
+print(median_string(dna,k))
 
 #c = frequent_words_with_mismatches_complement(text,k,d)
 #answer = " ".join(c)

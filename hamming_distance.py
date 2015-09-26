@@ -1,3 +1,4 @@
+from P_to_N import p_to_n_modify,n_to_p_modify
 
 def compute_hd(pattern1,pattern2):
     hamming_distance = 0
@@ -30,4 +31,13 @@ def distance_between_pattern_and_strings(pattern,dna):
                 hamming_distance = compute_hd(pattern,pattern_II)
         distance += hamming_distance
     return distance
+
+def median_string(dna,k):
+    distance = float('inf')
+    for i in range(0,pow(4,k)):
+        pattern = n_to_p_modify(i,k)
+        if distance > distance_between_pattern_and_strings(pattern,dna):
+            distance = distance_between_pattern_and_strings(pattern,dna)
+            median = pattern
+    return median
 
