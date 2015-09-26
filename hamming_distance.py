@@ -19,3 +19,15 @@ def approximate_pattern_matching(pattern, text, d):
             positions.append(i)
     return positions
 
+def distance_between_pattern_and_strings(pattern,dna):
+    k = len(pattern)
+    distance = 0
+    for text in dna:
+        hamming_distance = float('inf')
+        for i in range(0,len(text)-k +1):
+            pattern_II = text[i:i+k]
+            if hamming_distance > compute_hd(pattern,pattern_II):
+                hamming_distance = compute_hd(pattern,pattern_II)
+        distance += hamming_distance
+    return distance
+
