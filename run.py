@@ -18,12 +18,14 @@ import cmath
 
 text = ""
 genome = ""
-k = 3
-t = 5
+k = 0
+t = 0
 
 pattern = ""
 
-text_dna ="GGCGTTCAGGCA AAGAATCAGTCA CAAGGAGTTCGC CACGTCAATCAC CAATAATATTCG"
+text_dna =""
+
+
 dna = text_dna.split()
 
 
@@ -34,11 +36,7 @@ def standard_conversion(list):
     return stri
 
 
-
-an = greedy_motif_search(dna,k,t)
-print(an)
-
-
+print("\n".join(map(str, greedy_motif_search(dna,k,t))))
 
 
 #c = frequent_words_with_mismatches_complement(text,k,d)

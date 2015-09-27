@@ -147,7 +147,7 @@ def greedy_motif_search(dna,k,t):
             p_m_p = profile_most_probable(dna[j],k,prof)
             motif[j] = p_m_p
         if score(best_motif,find_consensus(best_motif)) > score(motif,find_consensus(motif)):
-            best_motif = motif
+            best_motif = motif[:]
     return best_motif
 
 
