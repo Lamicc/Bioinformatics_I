@@ -43,7 +43,7 @@ def find_pmp(motifs):
             if motifs[i][j] == "A":
                 A[j] += 1/t
             elif motifs[i][j] == "C":
-                C[j] += 0.1
+                C[j] += 1/t
             elif motifs[i][j] == "G":
                 G[j] += 1/t
             else:
@@ -65,12 +65,45 @@ def find_pmp(motifs):
             pmp = motifs[i]
     return  pmp
 
-def score(motifs):
+def find_consensus(motifs):
+    t = len(motifs)
+    k = len(motifs[0])
+    A = [0] * k
+    C = [0] * k
+    G = [0] * k
+    T = [0] * k
+    for i in range(0,t):
+        for j in range(0,k):
+            if motifs[i][j] == "A":
+                A[j] += 1
+            elif motifs[i][j] == "C":
+                C[j] += 1
+            elif motifs[i][j] == "G":
+                G[j] += 1
+            else:
+                T[j] += 1
+    consensus = []
+    for i in range(0,k):
+        count = 0
+        if A[i] > count:
+            count = A[i]
+            nuco = "A"
+            if C[i] > count:
+                count = C[i]
+                nuco = "C"
+                if G[i] > count:
+                    count = G[i]
+                    nuco = "C"
+                    if T[i] > count:
+                        nuco = "T"
+        consensus.append(nuco)
+    return consensus
 
-
-
-
-
+def score(motifs,consensus):
+    score = 0
+    for motif in motifs:
+        score += compute_hd(motif,consensus)
+    return score
 
 def greedy_motif_search(dna,k,t):
     best_motif = []
@@ -80,13 +113,9 @@ def greedy_motif_search(dna,k,t):
     for i in range(0,len(dna[0])-k+1):
         mf = dna[0][i:i+k]
         motif.append(mf)
-        for j in range(1,t+1):
-            distance = float('inf')
-            for e in range(0,len(dna[j])-k+1):
-                mfI = dna[j][e:e+k]
-                if distance > compute_hd(mf,mfI):
+        for j in range(1,t):
 
-                    distance = compute_hd(mf,mfI)
+
 
 
 
