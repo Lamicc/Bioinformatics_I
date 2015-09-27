@@ -12,17 +12,18 @@ from hamming_distance import compute_hd,approximate_pattern_matching, \
 distance_between_pattern_and_strings, median_string
 from neighbor import immediate_neighbors,neighbors
 from motif import motif_enumeration
-#from profile import profile_most_probable, find_pmp
+from profile import profile_most_probable, greedy_motif_search
 
 import cmath
 
 text = ""
 genome = ""
-k = 12
-d = 1
+k = 3
+t = 5
 
 pattern = ""
-text_dna =""
+
+text_dna ="GGCGTTCAGGCA AAGAATCAGTCA CAAGGAGTTCGC CACGTCAATCAC CAATAATATTCG"
 dna = text_dna.split()
 
 
@@ -31,6 +32,12 @@ def standard_conversion(list):
         list[i] = str(list[i])
     stri = " ".join(list)
     return stri
+
+
+
+an = greedy_motif_search(dna,k,t)
+print(an)
+
 
 
 
