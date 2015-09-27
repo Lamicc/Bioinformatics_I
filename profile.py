@@ -132,6 +132,12 @@ def profile(motifs):
                 G[j] += 1/t
             else:
                 T[j] += 1/t
+    #profile with Laplace’s Rule
+    #for i in range(k):
+    #    A[i] = A[i]*0.5 + 0.125
+    #    C[i] = C[i]*0.5 + 0.125
+    #    G[i] = G[i]*0.5 + 0.125
+    #    T[i] = T[i]*0.5 + 0.125
     return [A,C,G,T]
 
 def greedy_motif_search(dna,k,t):

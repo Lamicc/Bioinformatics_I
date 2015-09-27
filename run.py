@@ -18,8 +18,8 @@ import cmath
 
 text = ""
 genome = ""
-k = 0
-t = 0
+k = 12
+t = 25
 
 pattern = ""
 
