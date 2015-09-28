@@ -94,16 +94,14 @@ def find_consensus(motifs):
     consensus = ""
     nuco = ""
     for i in range(0,k):
-        count = 0
-        if A[i] > count:
-            count = A[i]
-            nuco = "A"
+        count = A[i]
+        nuco = "A"
         if C[i] > count:
             count = C[i]
             nuco = "C"
         if G[i] > count:
             count = G[i]
-            nuco = "C"
+            nuco = "G"
         if T[i] > count:
             nuco = "T"
         consensus += nuco
@@ -119,26 +117,26 @@ def profile(motifs):
     #print(motifs)
     t = len(motifs)
     k = len(motifs[0])
-    A = [0] * k
-    C = [0] * k
-    G = [0] * k
-    T = [0] * k
+    A = [1] * k
+    C = [1] * k
+    G = [1] * k
+    T = [1] * k
     for i in range(0,t):
         for j in range(0,k):
             if motifs[i][j] == "A":
-                A[j] += 1/t
+                A[j] += 1
             elif motifs[i][j] == "C":
-                C[j] += 1/t
+                C[j] += 1
             elif motifs[i][j] == "G":
-                G[j] += 1/t
+                G[j] += 1
             else:
-                T[j] += 1/t
+                T[j] += 1
     #profile with Laplace’s Rule
     for i in range(k):
-        A[i] = A[i]*0.5 + 0.125
-        C[i] = C[i]*0.5 + 0.125
-        G[i] = G[i]*0.5 + 0.125
-        T[i] = T[i]*0.5 + 0.125
+        A[i] = A[i]/(2*t)
+        C[i] = C[i]/(2*t)
+        G[i] = G[i]/(2*t)
+        T[i] = T[i]/(2*t)
     return [A,C,G,T]
 
 def greedy_motif_search(dna,k,t):
@@ -163,11 +161,13 @@ def randomized_motif_search(dna,k,t):
         index = random.randrange(0,len(dna[i])-k+1,1)
         motifs.append(dna[i][index:index+k])
     best_motifs = motifs[:]
+    #print(score(best_motifs,find_consensus(best_motifs)))
     while 1:
         prof = profile(motifs)
         for i in range(t):
             motifs[i] = profile_most_probable(dna[i],k,prof)
         if score(motifs,find_consensus(motifs)) < score(best_motifs,find_consensus(best_motifs)):
+            #print(score(motifs,find_consensus(motifs)))
             best_motifs = motifs[:]
         else:
             return best_motifs
