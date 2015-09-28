@@ -1,4 +1,5 @@
 from hamming_distance import compute_hd
+import random
 
 def profile_most_probable(text,k,prof):
     most_p = 0
@@ -133,11 +134,11 @@ def profile(motifs):
             else:
                 T[j] += 1/t
     #profile with Laplace’s Rule
-    #for i in range(k):
-    #    A[i] = A[i]*0.5 + 0.125
-    #    C[i] = C[i]*0.5 + 0.125
-    #    G[i] = G[i]*0.5 + 0.125
-    #    T[i] = T[i]*0.5 + 0.125
+    for i in range(k):
+        A[i] = A[i]*0.5 + 0.125
+        C[i] = C[i]*0.5 + 0.125
+        G[i] = G[i]*0.5 + 0.125
+        T[i] = T[i]*0.5 + 0.125
     return [A,C,G,T]
 
 def greedy_motif_search(dna,k,t):
@@ -155,6 +156,24 @@ def greedy_motif_search(dna,k,t):
         if score(best_motif,find_consensus(best_motif)) > score(motif,find_consensus(motif)):
             best_motif = motif[:]
     return best_motif
+
+def randomized_motif_search(dna,k,t):
+    motifs = []
+    for i in range(t):
+        index = random.randrange(0,len(dna[i])-k+1,1)
+        motifs.append(dna[i][index:index+k])
+    best_motifs = motifs[:]
+    while 1:
+        prof = profile(motifs)
+        for i in range(t):
+            motifs[i] = profile_most_probable(dna[i],k,prof)
+        if score(motifs,find_consensus(motifs)) < score(best_motifs,find_consensus(best_motifs)):
+            best_motifs = motifs[:]
+        else:
+            return best_motifs
+
+
+
 
 
 

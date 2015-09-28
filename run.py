@@ -12,18 +12,25 @@ from hamming_distance import compute_hd,approximate_pattern_matching, \
 distance_between_pattern_and_strings, median_string
 from neighbor import immediate_neighbors,neighbors
 from motif import motif_enumeration
-from profile import profile_most_probable, greedy_motif_search
+from profile import profile_most_probable, greedy_motif_search, randomized_motif_search
 
 import cmath
 
 text = ""
 genome = ""
-k = 12
-t = 25
+k = 6
+t = 8
 
 pattern = ""
 
-text_dna =""
+text_dna ="AATTGGCACATCATTATCGATAACGATTCGCCGCATTGCC \
+GGTTAACATCGAATAACTGACACCTGCTCTGGCACCGCTC \
+AATTGGCGGCGGTATAGCCAGATAGTGCCAATAATTTCCT \
+GGTTAATGGTGAAGTGTGGGTTATGGGGAAAGGCAGACTG \
+AATTGGACGGCAACTACGGTTACAACGCAGCAAGAATATT \
+GGTTAACTGTTGTTGCTAACACCGTTAAGCGACGGCAACT \
+AATTGGCCAACGTAGGCGCGGCTTGGCATCTCGGTGTGTG \
+GGTTAAAAGGCGCATCTTACTCTTTTCGCTTTCAAAAAAA"
 
 
 dna = text_dna.split()
@@ -36,7 +43,7 @@ def standard_conversion(list):
     return stri
 
 
-print("\n".join(map(str, greedy_motif_search(dna,k,t))))
+print("\n".join(map(str, randomized_motif_search(dna,k,t))))
 
 
 #c = frequent_words_with_mismatches_complement(text,k,d)
