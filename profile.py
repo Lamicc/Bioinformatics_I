@@ -172,7 +172,7 @@ def randomized_motif_search(dna,k,t):
         else:
             return best_motifs
 
-def random(values,probabilityDistribution):
+def Random(values,probabilityDistribution):
     wheel = [0]*(len(probabilityDistribution)+1)
     s = sum(probabilityDistribution)
     """normalization in case where probabilityDistribution is not normalized """
@@ -196,7 +196,7 @@ def gibbs_sampler(dna, k, t, N):
         motifs.append(dna[i][index:index+k])
     best_motifs = motifs[:]
     for j in range(1,N+1):
-        i =
+        i = Random()
 
 
 
