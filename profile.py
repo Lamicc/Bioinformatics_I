@@ -172,6 +172,15 @@ def randomized_motif_search(dna,k,t):
         else:
             return best_motifs
 
+def gibbs_sampler(dna, k, t, N):
+    motifs = []
+    for i in range(t):
+        index = random.randrange(0,len(dna[i])-k+1,1)
+        motifs.append(dna[i][index:index+k])
+    best_motifs = motifs[:]
+    for j in range(1,N+1):
+        i =
+
 
 
 
