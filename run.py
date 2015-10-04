@@ -13,7 +13,7 @@ distance_between_pattern_and_strings, median_string
 from neighbor import immediate_neighbors,neighbors
 from motif import motif_enumeration
 from profile import profile_most_probable, greedy_motif_search, randomized_motif_search, \
-    find_consensus, score
+    find_consensus, score, gibbs_sampler
 
 import cmath
 
@@ -21,11 +21,11 @@ text = ""
 genome = ""
 k = 15
 t = 20
+N = 6000
 
 pattern = ""
 
 text_dna =""
-
 dna = text_dna.split()
 
 
@@ -36,30 +36,8 @@ def standard_conversion(list):
     return stri
 
 
-#bm = randomized_motif_search(dna,k,t)[:]
-#sco = score(bm,find_consensus(bm))
-
-while 1:
-    m = randomized_motif_search(dna,k,t)
-    s = score(m,find_consensus(m))
-    if s < 64:
-        print(m)
-        print("\n".join(map(str,m)))
-        #print(find_consensus(m))
-        print(s)
-        break
-
-
-
-#print("\n".join(map(str, randomized_motif_search(dna,k,t))))
-
+print("\n".join(map(str, gibbs_sampler(dna,k,t,N))))
 
 #c = frequent_words_with_mismatches_complement(text,k,d)
 #answer = " ".join(c)
 #print(answer)
-#print( (-1 * (0.25 * cmath.log(0.25,2)+0*cmath.log(0.25,2)+0.25*cmath.log(0.5,2)+0.5 * cmath.log(0.25,2))))
-
-#li = list(set(l))
-#total = len(li)
-
-#print(standard_conversion(p))

@@ -139,6 +139,19 @@ def profile(motifs):
         T[i] = T[i]/(2*t)
     return [A,C,G,T]
 
+def pr(pattern,prof):
+    p = 1
+    for i in range(0,pattern.__len__()):
+        if pattern[i] == "A":
+            p *= prof[0][i]
+        elif pattern[i] == "C":
+            p *= prof[1][i]
+        elif pattern[i] == "G":
+            p *= prof[2][i]
+        else:
+            p *= prof[3][i]
+    return p
+
 def greedy_motif_search(dna,k,t):
     best_motif = []
     motif = ["" for n in range(t)]
@@ -196,7 +209,23 @@ def gibbs_sampler(dna, k, t, N):
         motifs.append(dna[i][index:index+k])
     best_motifs = motifs[:]
     for j in range(1,N+1):
-        i = Random()
+        i = random.randint(0,t-1)
+        mo = motifs[:i] + motifs[i+1:]
+        prof = profile(mo)
+        p_rand = []
+        for e in range(0,len(dna[i])-k+1):
+            p_rand.append(pr(dna[i][e:e+k],prof))
+        v = [int(rint) for rint in range(len(dna[i])-k+1)]
+        position = Random(v,p_rand)
+        motifs[i] = dna[i][position:position+k]
+        if score(motifs,find_consensus(motifs)) < score(best_motifs,find_consensus(best_motifs)):
+            best_motifs = motifs[:]
+    return best_motifs
+
+
+
+
+
 
 
 
