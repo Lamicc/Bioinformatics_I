@@ -13,19 +13,18 @@ distance_between_pattern_and_strings, median_string
 from neighbor import immediate_neighbors,neighbors
 from motif import motif_enumeration
 from profile import profile_most_probable, greedy_motif_search, randomized_motif_search, \
-    find_consensus, score, gibbs_sampler
+    find_consensus, score, gibbs_sampler, profile
 
 import cmath
 
 text = ""
 genome = ""
-k = 15
-t = 20
-N = 6000
-
+k = 0
+t = 0
+N = 0
 pattern = ""
 
-text_dna =""
+text_dna = ""
 dna = text_dna.split()
 
 
@@ -35,8 +34,7 @@ def standard_conversion(list):
     stri = " ".join(list)
     return stri
 
-
-print("\n".join(map(str, gibbs_sampler(dna,k,t,N))))
+#print("\n".join(map(str, gibbs_sampler(dna,k,t,N))))
 
 #c = frequent_words_with_mismatches_complement(text,k,d)
 #answer = " ".join(c)
